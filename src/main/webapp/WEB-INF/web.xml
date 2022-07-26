@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>JSPExam</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <filter>
+  	<filter-name>SetCharEncoding</filter-name>
+  	
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  		<init-param>
+  			<param-name>encoding</param-name>
+  			<param-value>utf-8</param-value>
+  		</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>SetCharEncoding</filter-name>
+  	<url-pattern>/*</url-pattern>	
+  </filter-mapping>
+  
+  
+  <session-config>
+  	<session-timeout>20</session-timeout>
+  </session-config>
+  
+  <!-- 드라이버 이름 -->
+  <context-param>
+  	<param-name>OracleDriver</param-name>
+  	<param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>
+  
+  <!-- 접속 URL -->
+  <context-param>
+  	<param-name>OracleUrl</param-name>
+  	<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+  </context-param>
+  
+  <!-- 계정ID -->
+  <context-param>
+  	<param-name>OracleId</param-name>
+  	<param-value>green</param-value>
+  </context-param>
+  
+  <!-- 계정PW -->
+  <context-param>
+  	<param-name>OraclePw</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+  
+  
+  <context-param>
+  	<param-name>POSTS_PER_PAGE</param-name>
+  	<param-value>5</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>PAGES_PER_BLOCK</param-name>
+  	<param-value>10</param-value>
+  </context-param>
+  
+  	<!-- 서블릿 등록 -->
+	<servlet>
+		<servlet-name>loginservlet_ex</servlet-name>
+		<servlet-class>servlet.loginservlet_ex</servlet-class>
+	</servlet>  
+	<!-- 경로 매핑 -->
+	<servlet-mapping>
+		<servlet-name>loginservlet_ex</servlet-name>
+		<url-pattern>/15_Servlet/login_ex</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/15_Servlet/HelloServlet.naver</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DirectServletPrint</servlet-name>
+		<servlet-class>servlet.DirectServletPrint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DirectServletPrint</servlet-name>
+		<url-pattern>/15_servlet/DirectServletPrint.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberAuth</servlet-name>
+		<servlet-class>servlet.MemberAuth</servlet-class>
+		<init-param>
+			<param-name>admin_id</param-name>
+			<param-value>admin_green</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberAuth</servlet-name>
+		<url-pattern>/15_Servlet/MemberAuth.mvc</url-pattern>
+	</servlet-mapping>
+	
+	<!-- list.do 서블릿 매핑 -->
+	<servlet>
+		<servlet-name>MVCBoardList</servlet-name>
+		<servlet-class>model2.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MVCBoardList</servlet-name>
+		<url-pattern>/model2/list.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MVCBoardWrite</servlet-name>
+		<servlet-class>model2.WriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MVCBoardWrite</servlet-name>
+		<url-pattern>/model2/write.do</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+		<param-name>maxPostSize</param-name>
+		<param-value>1024000</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>CHAT_ADDR</param-name>
+		<param-value>ws://192.168.50.133:8090/JSPExam</param-value>
+	</context-param>
+</web-app>
+
+
